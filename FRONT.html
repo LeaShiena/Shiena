@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WELCOME TO SEVENTEEN</title>
+    <link rel="stylesheet" href="FRONT.css"> 
+    <style>
+        /* Style for the buttons */
+        #buttonContainer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        #withAuthButton,
+        #withoutAuthButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #dfa5dc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px; /* Add margin between buttons */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="SVT LOGO.png" alt="SVT LOGO">
+        <div>
+            <h1>WELCOME TO SEVENTEEN AND CARATLAND</h1>
+            <h2>SEVENTEEN RIGHT HERE</h2>
+        </div>
+        <img src="carat.png" alt="carat">
+    </header>
+
+    <div id="h3">
+        <h3>PLEASE SELECT YOUR PREFERRED ACCESS METHOD:</h3>
+        <div id="content">
+            <div id="buttonContainer">
+                <button id="withAuthButton">With Authorization</button>
+                <button id="withoutAuthButton">Without Authorization</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("withAuthButton").addEventListener("click", function(event) {
+            var username = prompt("Enter your username:");
+            var password;
+            if (username !== null && username !== "") {
+                password = prompt("Enter your password:");
+                if (password !== null && password !== "") {
+                    window.location.href = "https://www.pup.edu.ph/";
+                }
+            } else {
+                alert("Both username and password are required.");
+            }
+        });
+
+        document.getElementById("withoutAuthButton").addEventListener("click", function(event) {
+            // Create a redirect script
+            var redirectScript = '<script>window.location.href = "https://www.pup.edu.ph/";<\/script>';
+            
+            // Combine the redirect script with the HTML content
+            var htmlContent = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>PUP</title></head><body>' + redirectScript + '</body></html>';
+            
+            // Create a Blob object with the HTML content
+            var blob = new Blob([htmlContent], { type: 'text/html' });
+            
+            // Create a download link for the Blob object
+            var downloadLink = document.createElement("a");
+            downloadLink.href = URL.createObjectURL(blob);
+            downloadLink.setAttribute("download", "Polytechnic University of the Philippines.html");
+            
+            // Trigger the download link
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+        });
+    </script>
+</body>
+</html>
